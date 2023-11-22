@@ -4,7 +4,7 @@ OUTPUT_ARCH(riscv) /* 指定输出文件的指令集架构, 在riscv平台上运
 ENTRY(pkx_entry)  /* 指定程序的入口点, 是一个叫做kern_entry的符号。我们之后会在汇编代码里定义它*/
 
 /* BASE_ADDRESS = 0x80200000; 定义了一个变量BASE_ADDRESS并初始化 */
-BASE_ADDRESS = 0x0;
+BASE_ADDRESS = 0x80200000;
 
 /*链接脚本剩余的部分是一整条SECTIONS指令，用来指定输出文件的所有SECTION
  "." 是SECTIONS指令内的一个特殊变量/计数器，对应内存里的一个地址。*/
