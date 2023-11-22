@@ -19,7 +19,7 @@ build: kernel/init/* kernel/arch/*
 		$(BUILD)/pokyux.bin
 
 run: build
-	$(QEMU) --machine virt -nographic -bios default -device loader,file=$(BUILD)/pokyux.bin,addr=0x0
+	$(QEMU) --machine virt -nographic -bios default -device loader,file=$(BUILD)/pokyux.bin,addr=0x80200000
 
 clean:
 	rm -rf $(BUILD)/*
