@@ -6,7 +6,7 @@ QEMU := qemu-system-riscv64
 .SUFFIXES: .h .c .S
 .DELETE_ON_ERROR:
 
-build: kernel/init/* kernel/arch/*
+build: FORCE
 	-mkdir $(BUILD)
 	$(PREFIX)gcc $(INCLUDES) \
 		kernel/arch/riscv64/boot.S \
@@ -24,3 +24,6 @@ run: build
 
 clean:
 	rm -rf $(BUILD)/*
+
+.PHONY: FORCE
+FORCE:

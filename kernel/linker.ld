@@ -32,10 +32,12 @@ SECTIONS
 
     PROVIDE(edata = .);
     .bss : {
-        *(.bss)
-        *(.bss.*)
-        *(.sbss*)
-    }
+    *(.bss.stack)
+    sbss = .;
+    *(.bss .bss.*)
+    *(.sbss .sbss.*)
+}
+ebss = .;
 
     PROVIDE(end = .);
     /DISCARD/ : {
