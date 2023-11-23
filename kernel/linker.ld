@@ -1,4 +1,4 @@
-/* tools/kernel.ld */
+/* linker script from rcore */
 
 OUTPUT_ARCH(riscv)
 ENTRY(pkx_entry)
@@ -7,40 +7,40 @@ BASE_ADDRESS = 0x80200000;
 
 SECTIONS
 {
-    . = BASE_ADDRESS;
-    .text : {
-        *(.text.pkx_entry)
-        *(.text .stub .text.* .gnu.linkonce.t.*)
-    }
+  . = BASE_ADDRESS;
+  .text : {
+    *(.text.pkx_entry)
+    *(.text .stub .text.* .gnu.linkonce.t.*)
+  }
 
-    PROVIDE(etext = .); 
+  PROVIDE(etext = .); 
 
-    .rodata : {
-        *(.rodata .rodata.* .gnu.linkonce.r.*)
-    }
+  .rodata : {
+    *(.rodata .rodata.* .gnu.linkonce.r.*)
+  }
 
-    . = ALIGN(0x1000);
+  . = ALIGN(0x1000);
 
-    .data : {
-        *(.data)
-        *(.data.*)
-    }
-    .sdata : {
-        *(.sdata)
-        *(.sdata.*)
-    }
+  .data : {
+    *(.data)
+    *(.data.*)
+  }
+  .sdata : {
+    *(.sdata)
+    *(.sdata.*)
+  }
 
-    PROVIDE(edata = .);
-    .bss : {
+  PROVIDE(edata = .);
+  .bss : {
     *(.bss.stack)
     sbss = .;
     *(.bss .bss.*)
     *(.sbss .sbss.*)
-}
-ebss = .;
+  }
+  ebss = .;
 
-    PROVIDE(end = .);
-    /DISCARD/ : {
-        *(.eh_frame .note.GNU-stack)
-    }
+  PROVIDE(end = .);
+  /DISCARD/ : {
+    *(.eh_frame .note.GNU-stack)
+  }
 }
