@@ -1,4 +1,4 @@
-INCLUDES := -Ikernel -Ikernel/arch
+INCLUDES := -Ikernel -Ikernel/arch -Ikernel/lib
 BUILD := build
 PREFIX := riscv64-unknown-elf-
 QEMU := qemu-system-riscv64
@@ -12,6 +12,7 @@ build: FORCE
 		kernel/arch/riscv64/boot.S \
 		kernel/arch/riscv64/*.c \
 		kernel/init/*.c \
+		kernel/lib/*.c \
 		-o $(BUILD)/pokyux.elf \
 		-T kernel/linker.ld \
 		-nostartfiles -nostdlib
