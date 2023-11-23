@@ -3,5 +3,5 @@
 
 usize pkx_start() {
   pkx_puts("Pokyux kernel started.\n");
-  while (true) ;
+  while (true) pkx_idle();
 }

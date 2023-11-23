@@ -11,3 +11,7 @@ void pkx_puts(char *str) {
   for (usize i = 0; i < l; i++)
     pkx_putchar(str[i]);
 }
+
+void pkx_idle() {
+  asm("wfi");
+}
