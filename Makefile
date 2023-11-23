@@ -1,7 +1,7 @@
 INCLUDES := -Ikernel -Ikernel/arch -Ikernel/lib
 BUILD := build
-PREFIX := riscv64-unknown-elf-
-QEMU := qemu-system-riscv64
+PREFIX := $(ARCH)-unknown-elf-
+QEMU := qemu-system-$(ARCH)
 
 .SUFFIXES: .h .c .S
 .DELETE_ON_ERROR:
