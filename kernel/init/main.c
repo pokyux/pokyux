@@ -1,6 +1,5 @@
 #include "type.h"
-#include "sbi.h"
-
+#include "pkx_call.h"
 
 usize pkx_start() {
   pkx_putchar('h');

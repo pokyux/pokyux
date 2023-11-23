@@ -1,4 +1,4 @@
-INCLUDES := -Ikernel -Ikernel/arch/riscv64
+INCLUDES := -Ikernel -Ikernel/arch
 BUILD := build
 PREFIX := riscv64-unknown-elf-
 QEMU := qemu-system-riscv64
@@ -22,7 +22,7 @@ build: FORCE
 run: build
 	$(QEMU) --machine virt \
 		-nographic \
-		-bios build/rustsbi-qemu.bin \
+		-bios tool/rustsbi-qemu.bin \
 		-device loader,file=$(BUILD)/pokyux.bin,addr=0x80200000
 
 clean:

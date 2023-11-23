@@ -15,7 +15,3 @@ usize sbi_call(usize which, usize arg0, usize arg1, usize arg2) {
   );
   return result;
 }
-
-void pkx_putchar(char c) {
-  sbi_call(SBI_CONSOLE_PUTCHAR, c, 0, 0);
-}
