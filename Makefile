@@ -9,6 +9,7 @@ QEMU := qemu-system-riscv64
 build: FORCE
 	-mkdir $(BUILD)
 	$(PREFIX)gcc $(INCLUDES) \
+	  -mcmodel=medany \
 		kernel/arch/riscv64/boot.S \
 		kernel/arch/riscv64/*.c \
 		kernel/init/*.c \
