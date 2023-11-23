@@ -20,7 +20,10 @@ build: FORCE
 		$(BUILD)/pokyux.bin
 
 run: build
-	$(QEMU) --machine virt -nographic -bios default -device loader,file=$(BUILD)/pokyux.bin,addr=0x80200000
+	$(QEMU) --machine virt \
+		-nographic \
+		-bios build/rustsbi-qemu.bin \
+		-device loader,file=$(BUILD)/pokyux.bin,addr=0x80200000
 
 clean:
 	rm -rf $(BUILD)/*
