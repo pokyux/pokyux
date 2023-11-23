@@ -8,27 +8,28 @@ QEMU := qemu-system-riscv64
 
 build: FORCE
 	-mkdir $(BUILD)
+	-mkdir $(BUILD)/$(ARCH)
 	$(PREFIX)gcc $(INCLUDES) \
 	  -mcmodel=medany \
-		kernel/arch/riscv64/boot.S \
-		kernel/arch/riscv64/*.c \
+		kernel/arch/$(ARCH)/boot.S \
+		kernel/arch/$(ARCH)/*.c \
 		kernel/init/*.c \
 		kernel/lib/*.c \
-		-o $(BUILD)/pokyux.elf \
+		-o $(BUILD)/$(ARCH)/pokyux.elf \
 		-T kernel/linker.ld \
 		-nostartfiles -nostdlib
 	$(PREFIX)objcopy -O binary \
-		$(BUILD)/pokyux.elf \
-		$(BUILD)/pokyux.bin
+		$(BUILD)/$(ARCH)/pokyux.elf \
+		$(BUILD)/$(ARCH)/pokyux.bin
 
 run: build
 	$(QEMU) --machine virt \
 		-nographic \
 		-bios tool/rustsbi-qemu.bin \
-		-device loader,file=$(BUILD)/pokyux.bin,addr=0x80200000
+		-device loader,file=$(BUILD)/$(ARCH)/pokyux.bin,addr=0x80200000
 
 clean:
-	rm -rf $(BUILD)/*
+	rm -rf $(BUILD)/$(ARCH)/*
 
 .PHONY: FORCE
 FORCE:
