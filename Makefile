@@ -1,5 +1,7 @@
-INCLUDES := -Ikernel -Ikernel/arch -Ikernel/lib
+ARCH := riscv64
 BUILD := build
+
+INCLUDES := -Ikernel -Ikernel/arch -Ikernel/lib
 PREFIX := $(ARCH)-unknown-elf-
 QEMU := qemu-system-$(ARCH)
 
@@ -16,7 +18,7 @@ build: FORCE
 		kernel/init/*.c \
 		kernel/lib/*.c \
 		-o $(BUILD)/$(ARCH)/pokyux.elf \
-		-T kernel/linker.ld \
+		-T kernel/arch/$(ARCH)/linker.ld \
 		-nostartfiles -nostdlib
 	$(PREFIX)objcopy -O binary \
 		$(BUILD)/$(ARCH)/pokyux.elf \
