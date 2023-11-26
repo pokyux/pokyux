@@ -8,7 +8,7 @@
 #define i32 long
 #define i64 long long
 
-#ifdef RV32
+#ifdef PKX32
 #define usize long
 #else
 #define usize long long

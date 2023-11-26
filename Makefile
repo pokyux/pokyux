@@ -30,6 +30,14 @@ run: build
 		-bios tool/rustsbi-qemu.bin \
 		-device loader,file=$(BUILD)/$(ARCH)/pokyux.bin,addr=0x80200000
 
+test: FORCE
+	-mkdir build
+	-mkdir build/test
+	gcc $(INCLUDES) \
+		kernel/lib/*.c \
+		-o build/test/test.elf
+	./build/test/test.elf
+
 clean:
 	rm -rf $(BUILD)/$(ARCH)/*
 
