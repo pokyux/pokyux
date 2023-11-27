@@ -48,3 +48,8 @@ void pkx_printf(const char *fmt, ...) {
   //   cur = type_index+1;
   // }
 }
+
+void pkx_printk(const char *fmt, ...) {
+  pkx_puts("[kernel] ");
+  pkx_puts(fmt);
+}
