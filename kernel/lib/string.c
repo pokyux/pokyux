@@ -1,3 +1,5 @@
+#include "type.h"
+
 #include "./string.h"
 
 usize pkx_strlen(char *str) {
@@ -29,32 +31,33 @@ usize pkx_strrev(char *str) {
 }
 
 char *pkx_itoa(isize i) {
-  if (i == 0)
-    return "0";
-  usize digit = 0;
-  bool neg = false;
+  return nullptr;
+  // if (i == 0)
+  //   return "0";
+  // usize digit = 0;
+  // bool neg = false;
 
-  if (i < 0) {
-    i = -i;
-    neg = true;
-    digit++;
-  }
+  // if (i < 0) {
+  //   i = -i;
+  //   neg = true;
+  //   digit++;
+  // }
 
-  isize cpi = i;
-  while (cpi) {
-    digit++;
-    cpi /= 10;
-  }
+  // isize cpi = i;
+  // while (cpi) {
+  //   digit++;
+  //   cpi /= 10;
+  // }
 
-  char *ret = (char*) malloc(sizeof(char)*(digit+1));
-  usize cur = 0;
-  while (i) {
-    ret[cur++] = i%10+'0';
-    i /= 10;
-  }
-  if (neg)
-    ret[cur++] = '-';
-  ret[cur] = 0;
-  pkx_strrev(ret);
-  return ret;
+  // char *ret = (char*) malloc(sizeof(char)*(digit+1));
+  // usize cur = 0;
+  // while (i) {
+  //   ret[cur++] = i%10+'0';
+  //   i /= 10;
+  // }
+  // if (neg)
+  //   ret[cur++] = '-';
+  // ret[cur] = 0;
+  // pkx_strrev(ret);
+  // return ret;
 }
