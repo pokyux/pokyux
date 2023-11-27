@@ -33,10 +33,8 @@ run: build
 test: FORCE
 	-mkdir build
 	-mkdir build/test
-	gcc $(INCLUDES) \
-		kernel/lib/memory.c \
-		kernel/lib/string.c \
-		kernel/lib/test.c \
+	gcc $(INCLUDES) -DPKX_TEST\
+		kernel/lib/*.c \
 		-o build/test/test.elf
 	./build/test/test.elf
 

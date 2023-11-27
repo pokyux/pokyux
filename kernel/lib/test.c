@@ -1,6 +1,6 @@
+#ifdef PKX_TEST
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 #include "type.h"
 #include "./test.h"
@@ -53,3 +53,5 @@ usize main(usize argc, char **argv) {
   free(need_test);
   return 0;
 }
+
+#endif

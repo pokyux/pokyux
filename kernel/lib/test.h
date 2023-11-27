@@ -1,3 +1,5 @@
+#ifdef PKX_TEST
+
 #define check(expr) if (expr) \
     printf("[ok] %s\n", #expr); \
   else { \
@@ -12,3 +14,5 @@ typedef struct {
   char *test_name;
   void (*test_func)();
 } test_unit;
+
+#endif
