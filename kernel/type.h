@@ -19,3 +19,5 @@
 #define true 1
 #define false 0
 #define bool u8
+
+#define nullptr 0
