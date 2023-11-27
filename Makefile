@@ -34,7 +34,6 @@ test: FORCE
 	-mkdir build
 	-mkdir build/test
 	gcc $(INCLUDES) \
-		kernel/lib/array.c \
 		kernel/lib/memory.c \
 		kernel/lib/string.c \
 		kernel/lib/test.c \

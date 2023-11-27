@@ -8,10 +8,19 @@
 #include "./memory.h"
 
 void test_string() {
-  char *str = "hello pkx";
+  char str[] = "123";
   checkeq(pkx_strlen(str), strlen(str));
   checkeq(pkx_strlen("123"), 3);
   checkneq(pkx_strlen("123"), 4);
+
+  check(pkx_strcmp("abc", "abc") == 0);
+  check(pkx_strcmp("abc", "bbc") < 0);
+  check(pkx_strcmp("bbc", "abc") > 0);
+
+  pkx_strrev(str);
+  check(pkx_strcmp(str, "321") == 0);
+  pkx_strrev(str);
+  check(pkx_strcmp(str, "123") == 0);
 }
 
 void test_memory() {
