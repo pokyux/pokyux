@@ -18,9 +18,13 @@ void test_string() {
   check(pkx_strcmp("bbc", "abc") > 0);
 
   pkx_strrev(str);
-  check(pkx_strcmp(str, "321") == 0);
+  checkeq(pkx_strcmp(str, "321"), 0);
   pkx_strrev(str);
-  check(pkx_strcmp(str, "123") == 0);
+  checkeq(pkx_strcmp(str, "123"), 0);
+
+  checkeq(pkx_strcmp(pkx_itoa(0), "0"), 0);
+  checkeq(pkx_strcmp(pkx_itoa(123), "123"), 0);
+  checkeq(pkx_strcmp(pkx_itoa(4321), "4321"), 0);
 }
 
 void test_memory() {
