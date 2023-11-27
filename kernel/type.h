@@ -10,9 +10,12 @@
 
 #ifdef PKX32
 #define usize long
+#define isize long
 #else
 #define usize long long
+#define isize long long
 #endif
 
 #define true 1
 #define false 0
+#define bool u8
