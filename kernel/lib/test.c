@@ -10,6 +10,7 @@ void test_string() {
   char *str = "hello pkx";
   checkeq(pkx_strlen(str), strlen(str));
   checkeq(pkx_strlen("123"), 3);
+  checkneq(pkx_strlen("123"), 4);
 }
 
 usize main(usize argc, char **argv) {

@@ -6,6 +6,7 @@
   }
 
 #define checkeq(expra, exprb) check(expra == exprb)
+#define checkneq(expra, exprb) check(expra != exprb)
 
 typedef struct {
   char *test_name;
