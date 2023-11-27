@@ -34,7 +34,10 @@ test: FORCE
 	-mkdir build
 	-mkdir build/test
 	gcc $(INCLUDES) \
-		kernel/lib/*.c \
+		kernel/lib/array.c \
+		kernel/lib/memory.c \
+		kernel/lib/string.c \
+		kernel/lib/test.c \
 		-o build/test/test.elf
 	./build/test/test.elf
 

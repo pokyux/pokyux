@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "./test.h"
 #include "type.h"
+#include "./test.h"
 #include "./string.h"
+#include "./memory.h"
 
 void test_string() {
   char *str = "hello pkx";
@@ -13,9 +14,15 @@ void test_string() {
   checkneq(pkx_strlen("123"), 4);
 }
 
+void test_memory() {
+  check(pkx_memcmp("abc123", "abc123", 7));
+  check(!pkx_memcmp("abc123", "321cba", 7));
+}
+
 usize main(usize argc, char **argv) {
   test_unit tests[] = {
-    {"string", test_string}
+    {"string", test_string},
+    {"memory", test_memory}
   };
 
   int test_num = sizeof(tests) / sizeof(test_unit);
