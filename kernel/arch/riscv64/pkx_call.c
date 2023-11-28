@@ -15,3 +15,7 @@ void pkx_puts(char *str) {
 void pkx_idle() {
   asm("wfi");
 }
+
+void pkx_fresh_icache() {
+  asm volatile ("fence.i");
+}
