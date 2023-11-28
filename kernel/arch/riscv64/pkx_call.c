@@ -29,3 +29,11 @@ void pkx_init_trap() {
     :: "r"(trap_handler_addr):
   );
 }
+
+void pkx_before_trap() {
+
+}
+
+void pkx_after_trap() {
+
+}
