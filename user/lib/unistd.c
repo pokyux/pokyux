@@ -18,3 +18,14 @@ isize syscall(
   );
   return result;
 }
+
+isize sys_write(
+  usize fd, 
+  const char *buf, 
+  usize len
+) {
+  return syscall(
+    SYSCALL_WRITE, 
+    fd, (usize) buf, len
+  );
+}

@@ -7,3 +7,9 @@ isize syscall(
   usize id, 
   usize arg0, usize arg1, usize arg2
 );
+
+isize sys_write(
+  usize fd, 
+  const char *buf, 
+  usize len
+);
