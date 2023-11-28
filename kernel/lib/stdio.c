@@ -22,7 +22,11 @@ isize get_place_holder(
 }
 
 void pkx_itoa_stack(isize i, char *ret) {
-  if (i == 0) return "0";
+  if (i == 0) {
+    ret[0] = '0';
+    ret[1] = 0;
+  }
+  
   usize digit = 0;
   bool neg = false;
 
