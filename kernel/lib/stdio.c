@@ -58,14 +58,14 @@ void pkx_fmt(const char *fmt, va_list ap) {
     }
 
     char type_index = get_place_holder(fmt, l, cur);
-    if (type_index == -1)
-      return;
+    if (type_index == -1) return;
+
+    char tmpstr[100];
     switch (fmt[type_index]) {
       case 's':
         pkx_puts(va_arg(ap, char*));
         break;
       case 'd':
-        char tmpstr[100];
         pkx_itoa_stack(va_arg(ap, i32), tmpstr);
         pkx_puts(tmpstr);
         break;
