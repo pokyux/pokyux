@@ -3,6 +3,6 @@
 #include "stdio.h"
 
 usize pkx_start() {
-  pkx_printk("Pokyux kernel started.\n");
+  pkx_printk("%s %d\n", "Pokyux kernel started.", 233);
   while (true) pkx_idle();
 }
