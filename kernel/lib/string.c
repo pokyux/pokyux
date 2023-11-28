@@ -2,7 +2,7 @@
 
 #include "./string.h"
 
-usize pkx_strlen(char *str) {
+usize pkx_strlen(const char *str) {
   usize len = 0;
   while (str[len]) len++;
   return len;
