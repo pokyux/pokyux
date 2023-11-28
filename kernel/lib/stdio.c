@@ -4,6 +4,7 @@
 #include "./stdio.h"
 #include "./stdarg.h"
 #include "./string.h"
+#include "./utils.h"
 
 isize get_place_holder(
   const char *fmt, usize fmtl, usize now
@@ -13,6 +14,7 @@ isize get_place_holder(
   while (now < fmtl) {
     if (fmt[now] == 'd'
       || fmt[now] == 's'
+      || fmt[now] == 'x'
     ) return now;
     now++;
   }
@@ -66,6 +68,9 @@ void pkx_fmt(const char *fmt, va_list ap) {
         char tmpstr[100];
         pkx_itoa_stack(va_arg(ap, i32), tmpstr);
         pkx_puts(tmpstr);
+        break;
+      case 'x':
+        pkx_print_hex(va_arg(ap, usize));
         break;
       default:
         break;
