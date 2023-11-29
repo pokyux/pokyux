@@ -8,3 +8,4 @@ typedef struct {
 } pkx_app_manager;
 
 bool pkx_load_app_bin(usize addr, usize len);
+void pkx_next_app();

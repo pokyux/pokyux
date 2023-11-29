@@ -6,3 +6,8 @@ bool pkx_load_app_bin(usize addr, usize len) {
   pkx_memcpy((u8*) 0x80400000, (u8*) addr, len);
   pkx_fresh_icache();
 }
+
+void pkx_next_app() {
+  // tmp impl
+  pkx_idle();
+}
