@@ -8,8 +8,6 @@ pkx_trap_vector:
   sd x1, 1*8(sp)
   # skip sp(x2), we will save it later
   sd x3, 3*8(sp)
-  # skip tp(x4), application does not use it
-  # save x5~x31
   sd x5, 5*8(sp)
   sd x6, 6*8(sp)
   sd x7, 7*8(sp)
@@ -45,6 +43,5 @@ pkx_trap_vector:
   # read user stack from sscratch and save it on the kernel stack
   csrr t2, sscratch
   sd t2, 2*8(sp)
-  # set input argument of trap_handler(cx: &mut TrapContext)
   mv a0, sp
   call pkx_trap_handler
