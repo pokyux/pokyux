@@ -13,8 +13,9 @@ void pkx_next_app() {
   pkx_idle();
 }
 
-void pkx_push_stack(u8 *sp, u8 *content, usize len) {
+u8 *pkx_push_stack(u8 *sp, u8 *content, usize len) {
   sp -= len;
   for (usize i = 0; i < len; i++)
     sp[i] = content[i];
+  return sp;
 }

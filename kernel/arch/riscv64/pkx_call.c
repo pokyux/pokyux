@@ -89,7 +89,7 @@ void pkx_launch_app(u8 *addr, u8 *kernel_stack, u8 *user_stack) {
   // 初始化应用程序的内核栈
   kernel_stack += PKX_KERNEL_STACK_SIZE;
   // 将数据推入内核栈，在 trap.S 中使用这些数据，启动程序
-  pkx_push_stack(kernel_stack, &context, sizeof(context));
+  kernel_stack = pkx_push_stack(kernel_stack, &context, sizeof(context));
 
   extern void pkx_trap_restore(u8 *kernel_sp);
   pkx_trap_restore(kernel_stack);

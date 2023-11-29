@@ -17,4 +17,4 @@ static u8 pkx_kernel_stack[PKX_KERNEL_STACK_SIZE];
 
 bool pkx_load_app_bin(usize addr, usize len);
 void pkx_next_app();
-void pkx_push_stack(u8 *sp, u8 *content, usize len);
+u8 *pkx_push_stack(u8 *sp, u8 *content, usize len);
