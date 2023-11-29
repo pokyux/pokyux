@@ -16,6 +16,7 @@ build: FORCE
 	-mkdir $(BUILD)
 	-mkdir $(BUILD)/$(ARCH)
 	$(PREFIX)gcc $(INCLUDES) \
+		-w \
 	  -mcmodel=medany \
 		kernel/arch/$(ARCH)/*.S \
 		kernel/arch/$(ARCH)/*.c \
@@ -57,6 +58,7 @@ mkuserdir:
 
 hello: mkuserdir
 	$(PREFIX)gcc \
+		-w \
 	  -mcmodel=medany \
 		-I user/lib \
 		-T user/arch/$(ARCH)/linker.ld \
