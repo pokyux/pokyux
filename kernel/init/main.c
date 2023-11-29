@@ -13,5 +13,9 @@ usize pkx_start() {
   usize app_start = (usize) &app_hello_start;
   usize app_len = (usize) &app_hello_end - app_start;
   pkx_load_app_bin(app_start, app_len);
+
+  // launch hello
+  pkx_launch_app(0x80400000);
+
   while (true) pkx_idle();
 }

@@ -48,3 +48,11 @@ void pkx_init_trap() {
   else
     pkx_printk("Trap init failed.\n");
 }
+
+void pkx_launch_app(usize addr) {
+  asm volatile (
+    "csrw sepc, %0\n"
+    "sret"
+    :: "r"(addr):
+  );
+}
