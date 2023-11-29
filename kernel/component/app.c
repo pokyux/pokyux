@@ -7,6 +7,10 @@ void pkx_init_kernel_stack() {
   pkx_printk("Kernel stack init ok.\n");
 }
 
+void pkx_init_user_stack() {
+  pkx_user_sp = (u8*) (((usize) pkx_user_stack) + PKX_USER_STACK_SIZE);
+}
+
 bool pkx_load_app_bin(usize addr, usize len) {
   pkx_printk("Loading app from addr: 0x%x, size: 0d%d\n", addr, len);
   pkx_memcpy((u8*) 0x80400000, (u8*) addr, len);
