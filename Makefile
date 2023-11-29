@@ -57,6 +57,7 @@ mkuserdir:
 
 hello: mkuserdir
 	$(PREFIX)gcc \
+	  -mcmodel=medany \
 		-I user/lib \
 		-T user/arch/$(ARCH)/linker.ld \
 		-nostartfiles \
