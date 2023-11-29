@@ -9,8 +9,10 @@ isize pkx_syscall(
   switch (id)
   {
   case PKX_SYS_WRITE:
+    pkx_printk("syscall: PKX_SYS_WRITE\n");
     return pkx_sys_write(arg0, (char*) arg1, arg2);
   case PKX_SYS_EXIT:
+    pkx_printk("syscall: PKX_SYS_EXIT\n");
     return pkx_sys_exit(arg0);
   default:
     pkx_printk("Error: Unknown syscall id: %d\n", id);

@@ -25,7 +25,6 @@ pkx_trap_context *pkx_trap_handler(
   pkx_printk("stval  : %x\n", stval);
   pkx_printk("sepc   : %x\n", context->sepc);
   pkx_printk("sstatus: %x\n", context->sstatus);
-  pkx_printk("--------------------------\n");
 
   switch (scause) {
     case PKX_RV64_INSTRUCTION_ACCESS_FAULT:
