@@ -68,7 +68,6 @@ void pkx_launch_app(u8 *addr, u8 *kernel_stack, u8 *user_stack) {
   pkx_printk("Launching app at : %x\n", addr);
   pkx_printk("Kernel stack addr: %x\n", kernel_stack);
   pkx_printk("User stack addr  : %x\n", user_stack);
-  pkx_printk("--------------------------\n");
   pkx_trap_context context;
   for (usize i = 0; i < 32; i++)
     context.x[i] = 0;
