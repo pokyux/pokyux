@@ -31,6 +31,12 @@ void pkx_shutdown() {
   pkx_idle();
 }
 
+void pkx_panic(const char *info) {
+  pkx_devide_line("Panic");
+  pkx_printk("%s\n", info);
+  pkx_shutdown();
+}
+
 void pkx_init_trap() {
   extern void pkx_trap_vector;
   usize trap_vector_addr = &pkx_trap_vector;
