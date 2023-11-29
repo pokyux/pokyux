@@ -99,7 +99,14 @@ void pkx_printf(const char *fmt, ...) {
 }
 
 void pkx_devide_line(const char *header) {
-  usize hl = pkx_strlen(header);
-  if (hl > 20)
+  if (pkx_strlen(header) > 20)
     pkx_panic("Invalid devide line header.");
+  pkx_printk("");
+  usize cur = 0;
+  while (header[cur])
+    pkx_putchar(header[cur++]);
+  pkx_putchar(' ');
+  while (cur++ < 30)
+    pkx_putchar('-');
+  pkx_putchar('\n');
 }

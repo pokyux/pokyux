@@ -13,7 +13,7 @@
 pkx_trap_context *pkx_trap_handler(
   pkx_trap_context *context
 ) {
-  pkx_printk("Trap----------------------\n");
+  pkx_devide_line("Trap");
   usize scause, stval;
   asm volatile (
     "csrr %0, scause\n"
