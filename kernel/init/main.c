@@ -5,6 +5,7 @@
 
 usize pkx_start() {
   pkx_init_trap();
+  pkx_init_kernel_stack();
 
   extern void pkx_entry;
   pkx_printk("Pokyux kernel addr: %x\n", &pkx_entry);
