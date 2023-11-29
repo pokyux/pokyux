@@ -11,4 +11,4 @@ void pkx_shutdown();
 void pkx_init_trap();
 
 // asm abstract
-void pkx_launch_app(usize addr, usize user_stack);
+void pkx_launch_app(u8 *addr, u8 *kernel_stack, u8 *user_stack);

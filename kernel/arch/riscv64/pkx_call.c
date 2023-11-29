@@ -55,7 +55,7 @@ void pkx_init_trap() {
 // 启动用户程序要实现的三步：
 // 1. 设置 PC 跳转（传入用户程序加载到内存的地址）
 // 2. 设置用户态
-// 3. 准备用户栈（开辟一块空间，传入低地址即可）
+// 3. 准备用户和内核栈（开辟一块空间，传入低地址即可）
 // 在 trap.S/restore 中设置好 sepc, 使得 CPU 在执行
 //  sret 之后 跳转到用户程序地址
 // 在 trap.S/restore 中设置好 sstatus 的 SPP 位
@@ -63,7 +63,7 @@ void pkx_init_trap() {
 // 在 trap.S/restore 中将 x2 复制到 sscratch，然后
 //  在 sret 前将 sscratch 与 sp (此时为内核栈) 对调
 //  实现了内核栈切换到用户栈的动作
-void pkx_launch_app(usize addr, usize user_stack) {
+void pkx_launch_app(u8 *addr, u8 *kernel_stack, u8 *user_stack) {
   pkx_printk("Launching app at: %x\n", addr);
   pkx_trap_context context;
   for (usize i = 0; i < 32; i++)
@@ -83,11 +83,15 @@ void pkx_launch_app(usize addr, usize user_stack) {
   //   and switched to sp in trap.S::pkx_trap_restore
   context.x[2] = user_stack + PKX_USER_STACK_SIZE;
   // 初始化应用程序的内核栈
-  pkx_init_kernel_stack();
+  kernel_stack += PKX_KERNEL_STACK_SIZE;
   // 将数据推入内核栈，在 trap.S 中使用这些数据，启动程序
-  pkx_push_kernel_stack(&context, sizeof(context));
+  pkx_push_stack(kernel_stack, &context, sizeof(context));
 
   extern void pkx_trap_restore(u8 *kernel_sp);
-  pkx_trap_restore(pkx_kernel_sp);
+  pkx_trap_restore(kernel_stack);
   pkx_printk("Shouldn't reach here (End of launch app).\n");
+}
+
+void pkx_from_asm() {
+  pkx_printk("From asm.\n");
 }
