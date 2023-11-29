@@ -24,6 +24,11 @@ void pkx_fresh_icache() {
   // asm volatile ("fence.i");
 }
 
+void pkx_shutdown() {
+  // tmp impl
+  pkx_idle();
+}
+
 void pkx_init_trap() {
   extern void pkx_trap_vector;
   usize trap_vector_addr = &pkx_trap_vector;
