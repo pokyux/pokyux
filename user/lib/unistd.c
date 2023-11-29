@@ -1,5 +1,7 @@
 #include "unistd.h"
 
+#define STDOUT 1
+
 isize syscall(
   usize id, 
   usize arg0, usize arg1, usize arg2
