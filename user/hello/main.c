@@ -3,8 +3,8 @@
 #include "string.h"
 
 int main() {
-  char str[] = "hello from user!";
+  char str[] = "hello from user!\n";
   int sl = strlen(str);
-  sys_write(STDOUT, "hello from user!", sl);
+  sys_write(STDOUT, str, sl);
   exit(0);
 }
