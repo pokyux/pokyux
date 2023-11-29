@@ -54,7 +54,7 @@ void pkx_init_trap() {
   if (stvec == trap_vector_addr)
     pkx_printk("Trap init ok. stvec: %x\n", stvec);
   else
-    pkx_printk("Trap init failed.\n");
+    pkx_panic("Trap init failed.");
 }
 
 // pkx launch app 通过 trap restore 实现了启动功能

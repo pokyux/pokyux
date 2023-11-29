@@ -7,7 +7,8 @@ usize pkx_start() {
   pkx_init_trap();
 
   extern void pkx_entry;
-  pkx_printk("Pokyux kernel addr: %x\n", &pkx_entry);
+  pkx_printk("[Pokyux Start]\n");
+  pkx_printk("Kernel addr: %x\n", &pkx_entry);
   extern void app_hello_start;
   extern void app_hello_end;
   usize app_start = (usize) &app_hello_start;
