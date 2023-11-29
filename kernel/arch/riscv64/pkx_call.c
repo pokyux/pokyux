@@ -89,4 +89,5 @@ void pkx_launch_app(usize addr, usize user_stack) {
 
   extern void pkx_trap_restore(u8 *kernel_sp);
   pkx_trap_restore(pkx_kernel_sp);
+  pkx_printk("Shouldn't reach here (End of launch app).\n");
 }
