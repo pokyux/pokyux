@@ -64,11 +64,11 @@ void pkx_init_trap() {
 //  在 sret 前将 sscratch 与 sp (此时为内核栈) 对调
 //  实现了内核栈切换到用户栈的动作
 void pkx_launch_app(u8 *addr, u8 *kernel_stack, u8 *user_stack) {
-  pkx_printk("--------------------------");
+  pkx_printk("--------------------------\n");
   pkx_printk("Launching app at : %x\n", addr);
   pkx_printk("Kernel stack addr: %x\n", kernel_stack);
   pkx_printk("User stack addr  : %x\n", user_stack);
-  pkx_printk("--------------------------");
+  pkx_printk("--------------------------\n");
   pkx_trap_context context;
   for (usize i = 0; i < 32; i++)
     context.x[i] = 0;
