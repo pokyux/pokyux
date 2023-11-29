@@ -1,3 +1,5 @@
+#include "type.h"
+
 typedef struct {
   usize x[32];
   usize sstatus;

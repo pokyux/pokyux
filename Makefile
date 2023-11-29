@@ -1,9 +1,13 @@
 ARCH := riscv64
 BUILD := build
 
-INCLUDES := -Ikernel -Ikernel/arch -Ikernel/lib -Ikernel/component
 PREFIX := $(ARCH)-unknown-elf-
 QEMU := qemu-system-$(ARCH)
+INCLUDES := -Ikernel \
+	-Ikernel/arch \
+	-Ikernel/lib \
+	-Ikernel/component \
+	-Ikernel/syscall
 
 .SUFFIXES: .h .c .S
 .DELETE_ON_ERROR:
@@ -17,6 +21,7 @@ build: FORCE
 		kernel/arch/$(ARCH)/*.c \
 		kernel/init/*.c \
 		kernel/lib/*.c \
+		kernel/syscall/*.c \
 		kernel/component/*.c \
 		-o $(BUILD)/$(ARCH)/pokyux.elf \
 		-T kernel/arch/$(ARCH)/linker.ld \
