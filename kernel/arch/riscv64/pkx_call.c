@@ -3,6 +3,8 @@
 #include "string.h"
 #include "type.h"
 
+#include "stdio.h"
+
 void pkx_putchar(char c) {
   sbi_call(SBI_CONSOLE_PUTCHAR, c, 0, 0);
 }
@@ -22,18 +24,18 @@ void pkx_fresh_icache() {
 }
 
 void pkx_init_trap() {
-  extern void pkx_trap_handler;
-  usize trap_handler_addr = &pkx_trap_handler;
+  extern void pkx_trap_vector;
+  usize trap_handler_addr = &pkx_trap_vector;
   asm volatile (
     "csrw stvec, %0"
     :: "r"(trap_handler_addr):
   );
-}
 
-void pkx_before_trap() {
-
-}
-
-void pkx_after_trap() {
-
+  // debug
+  usize pkxtest;
+  asm volatile (
+    "csrr %0, stvec"
+    : "=r"(pkxtest) ::
+  );
+  pkx_printk("%x\n", pkxtest);
 }
