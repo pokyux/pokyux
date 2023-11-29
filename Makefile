@@ -13,7 +13,6 @@ build: FORCE
 	-mkdir $(BUILD)/$(ARCH)
 	$(PREFIX)gcc $(INCLUDES) \
 	  -mcmodel=medany \
-		kernel/arch/$(ARCH)/boot.S \
 		kernel/arch/$(ARCH)/*.S \
 		kernel/arch/$(ARCH)/*.c \
 		kernel/init/*.c \

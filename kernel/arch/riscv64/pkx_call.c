@@ -20,7 +20,8 @@ void pkx_idle() {
 }
 
 void pkx_fresh_icache() {
-  asm volatile ("fence.i");
+  // TODO: uncomment this asm before uploading to board
+  // asm volatile ("fence.i");
 }
 
 void pkx_init_trap() {
@@ -37,5 +38,5 @@ void pkx_init_trap() {
     "csrr %0, stvec"
     : "=r"(pkxtest) ::
   );
-  pkx_printk("%x\n", pkxtest);
+  pkx_printk("stvec addr: %x\n", pkxtest);
 }

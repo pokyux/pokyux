@@ -1,6 +1,7 @@
 # copied from rcore. modified.
 
 .align 2
+.global pkx_trap_vector
 pkx_trap_vector:
   csrrw sp, sscratch, sp
   addi sp, sp, -34*8

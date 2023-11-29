@@ -6,5 +6,3 @@ void pkx_fresh_icache();
 
 // call from U mode
 void pkx_init_trap();
-void pkx_before_trap();
-void pkx_after_trap();
