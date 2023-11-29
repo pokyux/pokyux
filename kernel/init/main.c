@@ -16,7 +16,7 @@ usize pkx_start() {
   pkx_load_app_bin(app_start, app_len);
 
   // launch hello
-  pkx_launch_app(0x80400000);
+  pkx_launch_app(0x80400000, pkx_user_stack);
 
   while (true) pkx_idle();
 }

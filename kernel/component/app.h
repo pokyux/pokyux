@@ -13,7 +13,7 @@ typedef struct {
 static u8 pkx_user_stack[PKX_USER_STACK_SIZE];
 #define PKX_KERNEL_STACK_SIZE 4096*2
 static u8 pkx_kernel_stack[PKX_KERNEL_STACK_SIZE];
-u8 *pkx_kernel_sp;
+static u8 *pkx_kernel_sp;
 #endif
 
 void pkx_init_kernel_stack();

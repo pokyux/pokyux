@@ -2,6 +2,8 @@
 #include "sbi.h"
 #include "string.h"
 #include "type.h"
+#include "trap_context.h"
+#include "app.h"
 
 #include "stdio.h"
 
@@ -49,10 +51,41 @@ void pkx_init_trap() {
     pkx_printk("Trap init failed.\n");
 }
 
-void pkx_launch_app(usize addr) {
+// pkx launch app 通过 trap restore 实现了启动功能
+// 启动用户程序要实现的三步：
+// 1. 设置 PC 跳转（传入用户程序加载到内存的地址）
+// 2. 设置用户态
+// 3. 准备用户栈（开辟一块空间，传入低地址即可）
+// 在 trap.S/restore 中设置好 sepc, 使得 CPU 在执行
+//  sret 之后 跳转到用户程序地址
+// 在 trap.S/restore 中设置好 sstatus 的 SPP 位
+//  来控制 sret 之后程序运行在用户态
+// 在 trap.S/restore 中将 x2 复制到 sscratch，然后
+//  在 sret 前将 sscratch 与 sp (此时为内核栈) 对调
+//  实现了内核栈切换到用户栈的动作
+void pkx_launch_app(usize addr, usize user_stack) {
+  pkx_trap_context context;
+  for (usize i = 0; i < 32; i++)
+    context.x[i] = 0;
   asm volatile (
-    "csrw sepc, %0\n"
-    "sret"
-    :: "r"(addr):
+    "csrr %0, sstatus"
+    : "=r"(context.sstatus)::
   );
+  // set SPP to 0
+  // ref: https://people.eecs.berkeley.edu/~krste/papers/riscv-privileged-v1.9.pdf
+  // "SPP is set to 0 if the trap originated from user mode"
+  // SSP: 8th bit from right to left
+  context.sstatus &= (usize) 0xFFFFFEFF;
+  context.sepc = addr;
+  // set user sp. 
+  // user sp is copied to sscratch, 
+  //   and switched to sp in trap.S::pkx_trap_restore
+  context.x[2] = user_stack + PKX_USER_STACK_SIZE;
+  // 初始化应用程序的内核栈
+  pkx_init_kernel_stack();
+  // 将数据推入内核栈，在 trap.S 中使用这些数据，启动程序
+  pkx_push_kernel_stack(&context, sizeof(context));
+
+  extern void pkx_trap_restore(u8 *kernel_sp);
+  pkx_trap_restore(pkx_kernel_sp);
 }
