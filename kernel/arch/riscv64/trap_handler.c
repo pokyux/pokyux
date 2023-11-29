@@ -7,12 +7,13 @@
 
 // read from RISCV manual
 // https://people.eecs.berkeley.edu/~krste/papers/riscv-privileged-v1.9.pdf
-#define PKX_RV64_ECALL 0x0000000000000008
+#define PKX_RV64_INSTRUCTION_ACCESS_FAULT 0x1
+#define PKX_RV64_ECALL 0x8
 
 pkx_trap_context *pkx_trap_handler(
   pkx_trap_context *context
 ) {
-  pkx_printk("Start handling trap.\n");
+  pkx_printk("Trap----------------------\n");
   usize scause, stval;
   asm volatile (
     "csrr %0, scause\n"
@@ -20,8 +21,17 @@ pkx_trap_context *pkx_trap_handler(
     : "=r"(scause) ,"=r"(stval)
     ::
   );
+  pkx_printk("scause : %x\n", scause);
+  pkx_printk("stval  : %x\n", stval);
+  pkx_printk("sepc   : %x\n", context->sepc);
+  pkx_printk("sstatus: %x\n", context->sstatus);
+  pkx_printk("--------------------------\n");
 
   switch (scause) {
+    case PKX_RV64_INSTRUCTION_ACCESS_FAULT:
+      pkx_printk("instruction access fault, stval: %x\n", stval);
+      pkx_shutdown();
+      break;
     case PKX_RV64_ECALL:
       context->sepc += 4;
       context->x[10] = pkx_syscall(
