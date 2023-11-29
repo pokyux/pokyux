@@ -1,7 +1,7 @@
 #include "type.h"
 
-#define PKX_SYSCALL_WRITE 64
-#define PKX_SYSCALL_EXIT  93
+#define PKX_SYS_WRITE 64
+#define PKX_SYS_EXIT  93
 
 isize pkx_syscall(
   usize id, 
