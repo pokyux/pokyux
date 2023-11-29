@@ -26,17 +26,20 @@ void pkx_fresh_icache() {
 
 void pkx_init_trap() {
   extern void pkx_trap_vector;
-  usize trap_handler_addr = &pkx_trap_vector;
+  usize trap_vector_addr = &pkx_trap_vector;
   asm volatile (
     "csrw stvec, %0"
-    :: "r"(trap_handler_addr):
+    :: "r"(trap_vector_addr):
   );
 
   // debug
-  usize pkxtest;
+  usize stvec;
   asm volatile (
     "csrr %0, stvec"
-    : "=r"(pkxtest) ::
+    : "=r"(stvec) ::
   );
-  pkx_printk("stvec addr: %x\n", pkxtest);
+  if (stvec == trap_vector_addr)
+    pkx_printk("Trap init ok. stvec: %x\n", stvec);
+  else
+    pkx_printk("Trap init failed.\n");
 }
