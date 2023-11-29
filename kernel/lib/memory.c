@@ -7,7 +7,11 @@ bool pkx_memcmp(u8 *a, u8 *b, usize len) {
   return true;
 }
 
-bool pkx_memcpy(u8 *dst, u8 *src, usize len) {
+bool pkx_memcpy(u8 *dst, const u8 *src, usize len) {
   for (usize i = 0; i < len; i++)
     dst[i] = src[i];
+}
+
+void memcpy(void *dst, const void *src, usize len) {
+  pkx_memcpy((u8*) dst, (const u8*) src, len);
 }

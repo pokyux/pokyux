@@ -3,6 +3,7 @@
 #include "type.h"
 #include "pkx_call.h"
 #include "app.h"
+#include "memory.h"
 
 // read from RISCV manual
 // https://people.eecs.berkeley.edu/~krste/papers/riscv-privileged-v1.9.pdf
