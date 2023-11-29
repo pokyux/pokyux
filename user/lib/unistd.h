@@ -1,5 +1,7 @@
 #include "type.h"
 
+#define STDOUT 1
+
 #define SYSCALL_WRITE 64
 #define SYSCALL_EXIT 93
 
