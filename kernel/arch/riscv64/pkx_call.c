@@ -98,7 +98,7 @@ void pkx_launch_app(u8 *addr, u8 *kernel_stack, u8 *user_stack) {
 
   extern void pkx_trap_restore(u8 *kernel_sp);
   pkx_trap_restore(kernel_stack);
-  pkx_printk("Shouldn't reach here (End of launch app).\n");
+  pkx_panic("Shouldn't reach here (End of launch app).");
 }
 
 void pkx_from_asm() {

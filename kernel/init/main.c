@@ -18,5 +18,5 @@ usize pkx_start() {
   // launch hello
   pkx_launch_app(0x80400000, pkx_kernel_stack, pkx_user_stack);
 
-  while (true) pkx_idle();
+  pkx_panic("Shouldn't reach here. End of pkx_start.");
 }
