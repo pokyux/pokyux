@@ -50,24 +50,3 @@ clean:
 
 .PHONY: FORCE
 FORCE:
-
-mkuserdir:
-	-mkdir $(BUILD)
-	-mkdir $(BUILD)/user
-	-mkdir $(BUILD)/user/$(ARCH)
-
-hello: mkuserdir
-	$(PREFIX)gcc \
-		-w \
-	  -mcmodel=medany \
-		-I user/lib \
-		-T user/arch/$(ARCH)/linker.ld \
-		-nostartfiles \
-		-nostdlib \
-		user/arch/$(ARCH)/start.S \
-		user/lib/*.c \
-		user/hello/*.c \
-		-o build/user/$(ARCH)/hello.elf
-	$(PREFIX)objcopy -O binary \
-		build/user/$(ARCH)/hello.elf \
-		build/user/$(ARCH)/hello.bin
