@@ -39,3 +39,7 @@ void pkx_add_process(void *addr, usize size) {
   pkx_printk("User   Stack: %x\n", pkx_process_list[pkx_process_num].user_stack);
   pkx_process_num++;
 }
+
+pkx_process pkx_get_process(usize pid) {
+  return pkx_process_list[pid];
+}
