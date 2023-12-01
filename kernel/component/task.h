@@ -15,22 +15,24 @@
 #define PKX_TASK_EXITED  3
 
 typedef struct {
-  
+  usize ra, sp;
+  usize s[12];
 } pkx_task_context;
 
 typedef struct {
-  usize pid;
+  usize tid;
   usize status;
   void *addr;
   usize size;
   void *kernel_stack;
   void *user_stack;
+  pkx_task_context context;
 } pkx_task;
 
 void pkx_init_task();
-void pkx_next_task();
+void pkx_next_task(usize except_tid);
 void pkx_add_task(void *addr, usize size);
-pkx_task pkx_get_task(usize pid);
+pkx_task pkx_get_task(usize tid);
 u8 *pkx_push_stack(u8 *sp, u8 *content, usize len);
 
 #endif

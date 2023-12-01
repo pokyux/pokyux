@@ -69,11 +69,11 @@ void pkx_init_trap() {
 // 在 trap.S/restore 中将 x2 复制到 sscratch，然后
 //  在 sret 前将 sscratch 与 sp (此时为内核栈) 对调
 //  实现了内核栈切换到用户栈的动作
-void pkx_launch_task(u8 *addr, u8 *kernel_stack, u8 *user_stack) {
+void pkx_launch_task(pkx_task task) {
   pkx_devide_line("Launch App");
-  pkx_printk("Launching app at : %x\n", addr);
-  pkx_printk("Kernel stack addr: %x\n", kernel_stack);
-  pkx_printk("User stack addr  : %x\n", user_stack);
+  pkx_printk("Launching app at : %x\n", task.addr);
+  pkx_printk("Kernel stack addr: %x\n", task.kernel_stack);
+  pkx_printk("User stack addr  : %x\n", task.user_stack);
   pkx_trap_context context;
   for (usize i = 0; i < 32; i++)
     context.x[i] = 0;
@@ -86,13 +86,13 @@ void pkx_launch_task(u8 *addr, u8 *kernel_stack, u8 *user_stack) {
   // "SPP is set to 0 if the trap originated from user mode"
   // SSP: 8th bit from right to left
   context.sstatus &= (usize) 0xFFFFFEFF;
-  context.sepc = addr;
+  context.sepc = task.addr;
   // set user sp. 
   // user sp is copied to sscratch, 
   //   and switched to sp in trap.S::pkx_trap_restore
-  context.x[2] = user_stack + PKX_USER_STACK_SIZE;
+  context.x[2] = task.user_stack + PKX_USER_STACK_SIZE;
   // 初始化应用程序的内核栈
-  kernel_stack += PKX_KERNEL_STACK_SIZE;
+  u8 *kernel_stack += PKX_KERNEL_STACK_SIZE + task.kernel_stack;
   // 将数据推入内核栈，在 trap.S 中使用这些数据，启动程序
   kernel_stack = pkx_push_stack(kernel_stack, &context, sizeof(context));
 

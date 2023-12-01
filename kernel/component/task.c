@@ -11,9 +11,12 @@ void pkx_init_task() {
   pkx_printk("task controler init ok.\n");
 }
 
-void pkx_next_task() {
-  // tmp impl
-  pkx_idle();
+void pkx_next_task(usize except_tid) {
+  for (usize i = 0; i < pkx_task_num; i++) {
+    if (pkx_task_list[i].tid == except_tid)
+      continue;
+    
+  }
 }
 
 u8 *pkx_push_stack(u8 *sp, u8 *content, usize len) {
@@ -24,7 +27,7 @@ u8 *pkx_push_stack(u8 *sp, u8 *content, usize len) {
 }
 
 void pkx_add_task(void *addr, usize size) {
-  pkx_task_list[pkx_task_num].pid = pkx_task_num;
+  pkx_task_list[pkx_task_num].tid = pkx_task_num;
   pkx_task_list[pkx_task_num].status = PKX_TASK_UNINIT;
   pkx_task_list[pkx_task_num].addr = addr;
   pkx_task_list[pkx_task_num].size = size;
@@ -33,7 +36,7 @@ void pkx_add_task(void *addr, usize size) {
   pkx_task_list[pkx_task_num].user_stack
     = pkx_alloc(PKX_USER_STACK_SIZE);
   pkx_devide_line("Add task");
-  pkx_printk("Pid         : %d\n", pkx_task_num);
+  pkx_printk("tid         : %d\n", pkx_task_num);
   pkx_printk("Addr        : %x\n", addr);
   pkx_printk("Size        : %x\n", size);
   pkx_printk("Kernel Stack: %x\n", pkx_task_list[pkx_task_num].kernel_stack);
@@ -42,6 +45,6 @@ void pkx_add_task(void *addr, usize size) {
   pkx_task_num++;
 }
 
-pkx_task pkx_get_task(usize pid) {
-  return pkx_task_list[pid];
+pkx_task pkx_get_task(usize tid) {
+  return pkx_task_list[tid];
 }

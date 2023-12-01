@@ -1,4 +1,5 @@
 #include "type.h"
+#include "task.h"
 
 // call for M mode service
 void pkx_putchar(char c);
@@ -12,4 +13,5 @@ void pkx_panic(const char *info);
 void pkx_init_trap();
 
 // asm abstract
-void pkx_launch_task(u8 *addr, u8 *kernel_stack, u8 *user_stack);
+void pkx_launch_task(pkx_task task);
+void pkx_continue_task(pkx_task task);
