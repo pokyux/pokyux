@@ -25,6 +25,7 @@ void pkx_itoa_stack(isize i, char *ret) {
   if (i == 0) {
     ret[0] = '0';
     ret[1] = 0;
+    return;
   }
   
   usize digit = 0;

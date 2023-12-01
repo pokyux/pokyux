@@ -17,11 +17,13 @@ void pkx_next_task(usize prev_tid) {
   for (usize i = 0; i < pkx_task_num; i++) {
     if (pkx_task_list[i].tid == prev_tid)
       continue;
-    if (pkx_task_list[i].status == PKX_TASK_READY)
+    if (pkx_task_list[i].status == PKX_TASK_READY) {
+      pkx_printk("Switch to %d\n", i);
       pkx_switch_task(
         &pkx_task_list[prev_tid].context,
         &pkx_task_list[i].context
       );
+    }
   }
   pkx_panic("No task avail.\n");
 }

@@ -32,6 +32,9 @@ usize pkx_start() {
   pkx_add_task(0x80430000, app_3_size);
   pkx_printk("Load 4 apps ok.\n");
 
+  for (usize i = 0; i < 4; i++)
+    pkx_printk("Task %d, Status: %d\n", i, pkx_get_task(i)->status);
+
   pkx_task *now = pkx_get_task(1);
   pkx_launch_task(now);
 
