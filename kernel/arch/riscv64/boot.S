@@ -13,6 +13,11 @@ boot_stack_top:
 
 # for link app
 .section .data
+.global app_hello_start
+.global app_hello_end
+app_hello_start:
+  .incbin "../../build/user/riscv64/hello.bin"
+app_hello_end:
 .global app_1_start
 .global app_1_end
 app_1_start:
