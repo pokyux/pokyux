@@ -4,10 +4,11 @@
 #include "mem.h"
 
 static pkx_task pkx_task_list[PKX_MAX_TASK_NUM];
-usize pkx_task_num;
+usize pkx_task_num, pkx_task_running;
 
 void pkx_init_task() {
   pkx_task_num = 0;
+  pkx_task_running = -1;
   pkx_printk("task controler init ok.\n");
 }
 
@@ -47,4 +48,12 @@ void pkx_add_task(void *addr, usize size) {
 
 pkx_task pkx_get_task(usize tid) {
   return pkx_task_list[tid];
+}
+
+usize pkx_get_running_tid() {
+  return pkx_task_running;
+}
+
+void pkx_set_running_tid(usize tid) {
+  pkx_task_running = tid;
 }

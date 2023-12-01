@@ -33,6 +33,8 @@ void pkx_init_task();
 void pkx_next_task(usize except_tid);
 void pkx_add_task(void *addr, usize size);
 pkx_task pkx_get_task(usize tid);
+usize pkx_get_running_tid();
+void pkx_set_running_tid(usize tid);
 u8 *pkx_push_stack(u8 *sp, u8 *content, usize len);
 
 #endif
