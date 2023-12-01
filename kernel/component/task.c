@@ -25,6 +25,7 @@ u8 *pkx_push_stack(u8 *sp, u8 *content, usize len) {
 
 void pkx_add_task(void *addr, usize size) {
   pkx_task_list[pkx_task_num].pid = pkx_task_num;
+  pkx_task_list[pkx_task_num].status = PKX_TASK_UNINIT;
   pkx_task_list[pkx_task_num].addr = addr;
   pkx_task_list[pkx_task_num].size = size;
   pkx_task_list[pkx_task_num].kernel_stack
@@ -37,6 +38,7 @@ void pkx_add_task(void *addr, usize size) {
   pkx_printk("Size        : %x\n", size);
   pkx_printk("Kernel Stack: %x\n", pkx_task_list[pkx_task_num].kernel_stack);
   pkx_printk("User   Stack: %x\n", pkx_task_list[pkx_task_num].user_stack);
+  pkx_task_list[pkx_task_num].status = PKX_TASK_READY;
   pkx_task_num++;
 }
 

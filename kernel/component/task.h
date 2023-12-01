@@ -9,8 +9,18 @@
 #define PKX_USER_STACK_SIZE 4096*2
 #define PKX_KERNEL_STACK_SIZE 4096*2
 
+#define PKX_TASK_UNINIT  0
+#define PKX_TASK_READY   1
+#define PKX_TASK_RUNNING 2
+#define PKX_TASK_EXITED  3
+
+typedef struct {
+  
+} pkx_task_context;
+
 typedef struct {
   usize pid;
+  usize status;
   void *addr;
   usize size;
   void *kernel_stack;
