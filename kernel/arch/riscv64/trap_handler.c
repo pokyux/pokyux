@@ -26,10 +26,12 @@ pkx_trap_context *pkx_trap_handler(
   pkx_printk("sepc   : %x\n", context->sepc);
   pkx_printk("sstatus: %x\n", context->sstatus);
 
+  usize tid = pkx_get_running_tid();
+
   switch (scause) {
     case PKX_RV64_INSTRUCTION_ACCESS_FAULT:
       pkx_printk("instruction access fault, stval: %x\n", stval);
-      pkx_next_task();
+      pkx_next_task(tid);
       break;
     case PKX_RV64_ECALL:
       context->sepc += 4;
@@ -41,7 +43,7 @@ pkx_trap_context *pkx_trap_handler(
     default:
       pkx_printk("Unknown trap id: %d\n", scause);
       pkx_printk("App failed. Load another.\n");
-      pkx_next_task();
+      pkx_next_task(tid);
   }
   return context;
 }

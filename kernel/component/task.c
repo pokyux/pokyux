@@ -16,8 +16,8 @@ void pkx_next_task(usize except_tid) {
   for (usize i = 0; i < pkx_task_num; i++) {
     if (pkx_task_list[i].tid == except_tid)
       continue;
-    
   }
+  pkx_idle();
 }
 
 u8 *pkx_push_stack(u8 *sp, u8 *content, usize len) {

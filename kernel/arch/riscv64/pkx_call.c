@@ -92,7 +92,7 @@ void pkx_launch_task(pkx_task task) {
   //   and switched to sp in trap.S::pkx_trap_restore
   context.x[2] = task.user_stack + PKX_USER_STACK_SIZE;
   // 初始化应用程序的内核栈
-  u8 *kernel_stack += PKX_KERNEL_STACK_SIZE + task.kernel_stack;
+  u8 *kernel_stack = PKX_KERNEL_STACK_SIZE + task.kernel_stack;
   // 将数据推入内核栈，在 trap.S 中使用这些数据，启动程序
   kernel_stack = pkx_push_stack(kernel_stack, &context, sizeof(context));
 

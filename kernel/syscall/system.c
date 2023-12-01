@@ -6,7 +6,7 @@
 
 void pkx_sys_exit(usize exit_code) {
   pkx_printk("App finished.\n");
-  pkx_next_task();
+  pkx_next_task(-1);
 }
 
 isize pkx_sys_yield() {
