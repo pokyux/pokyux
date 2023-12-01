@@ -52,8 +52,8 @@ void pkx_add_task(void *addr, usize size) {
   pkx_task_num++;
 }
 
-pkx_task pkx_get_task(usize tid) {
-  return pkx_task_list[tid];
+pkx_task *pkx_get_task(usize tid) {
+  return &pkx_task_list[tid];
 }
 
 usize pkx_get_running_tid() {
