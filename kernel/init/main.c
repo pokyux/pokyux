@@ -1,7 +1,7 @@
 #include "type.h"
 #include "pkx_call.h"
 #include "stdio.h"
-#include "app.h"
+#include "process.h"
 
 usize pkx_start() {
   pkx_init_trap();

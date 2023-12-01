@@ -2,7 +2,7 @@
 #include "stdio.h"
 #include "type.h"
 #include "pkx_call.h"
-#include "app.h"
+#include "process.h"
 #include "memory.h"
 
 // read from RISCV manual
