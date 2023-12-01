@@ -9,7 +9,7 @@
 .endm
     .section .text
     .globl __switch
-__switch:
+pkx_switch_task:
     # 阶段 [1]
     # __switch(
     #     current_task_cx_ptr: *mut TaskContext,

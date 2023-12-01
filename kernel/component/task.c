@@ -12,12 +12,18 @@ void pkx_init_task() {
   pkx_printk("task controler init ok.\n");
 }
 
-void pkx_next_task(usize except_tid) {
+void pkx_next_task(usize prev_tid) {
+  extern void pkx_switch_task(task_context *ts, task_context *td);
   for (usize i = 0; i < pkx_task_num; i++) {
     if (pkx_task_list[i].tid == except_tid)
       continue;
+    if (pkx_task_list[i].status == PKX_TASK_READY)
+      pkx_switch_task(
+        &pkx_task_list[prev_tid].context,
+        &pkx_task_list[i].context
+      );
   }
-  pkx_idle();
+  pkx_panic("No task avail.\n");
 }
 
 u8 *pkx_push_stack(u8 *sp, u8 *content, usize len) {

@@ -30,7 +30,7 @@ typedef struct {
 } pkx_task;
 
 void pkx_init_task();
-void pkx_next_task(usize except_tid);
+void pkx_next_task(usize prev_tid);
 void pkx_add_task(void *addr, usize size);
 pkx_task pkx_get_task(usize tid);
 usize pkx_get_running_tid();
