@@ -1,20 +1,25 @@
+#ifndef PKX_PROCESS_H
+#define PKX_PROCESS_H
+
 #include "type.h"
 #include "memory.h"
 #include "stdio.h"
 
-typedef struct {
-  usize app_num;
-  usize current_running;
-} pkx_app_manager;
-
-#ifndef PKX_DEF_STACK
-#define PKX_DEF_STACK
+#define PKX_MAX_PROCESS_NUM 128
 #define PKX_USER_STACK_SIZE 4096*2
-static u8 pkx_user_stack[PKX_USER_STACK_SIZE];
 #define PKX_KERNEL_STACK_SIZE 4096*2
-static u8 pkx_kernel_stack[PKX_KERNEL_STACK_SIZE];
-#endif
 
-bool pkx_load_app_bin(usize addr, usize len);
-void pkx_next_app();
+typedef struct {
+  usize pid;
+  void *addr;
+  void *kernel_stack;
+  void *user_stack;
+} pkx_process;
+
+static pkx_process *pkx_process_list[PKX_MAX_PROCESS_NUM];
+
+void pkx_init_process();
+void pkx_next_process();
 u8 *pkx_push_stack(u8 *sp, u8 *content, usize len);
+
+#endif

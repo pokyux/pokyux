@@ -29,7 +29,7 @@ pkx_trap_context *pkx_trap_handler(
   switch (scause) {
     case PKX_RV64_INSTRUCTION_ACCESS_FAULT:
       pkx_printk("instruction access fault, stval: %x\n", stval);
-      pkx_shutdown();
+      pkx_next_process();
       break;
     case PKX_RV64_ECALL:
       context->sepc += 4;
@@ -41,7 +41,7 @@ pkx_trap_context *pkx_trap_handler(
     default:
       pkx_printk("Unknown trap id: %d\n", scause);
       pkx_printk("App failed. Load another.\n");
-      pkx_next_app();
+      pkx_next_process();
   }
   return context;
 }

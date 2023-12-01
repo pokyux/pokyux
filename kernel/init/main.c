@@ -5,18 +5,11 @@
 
 usize pkx_start() {
   pkx_init_trap();
+  pkx_init_process();
 
   extern void pkx_entry;
   pkx_devide_line("Pokyux Start");
   pkx_printk("Kernel addr: %x\n", &pkx_entry);
-  extern void app_hello_start;
-  extern void app_hello_end;
-  usize app_start = (usize) &app_hello_start;
-  usize app_len = (usize) &app_hello_end - app_start;
-  pkx_load_app_bin(app_start, app_len);
-
-  // launch hello
-  pkx_launch_app(0x80400000, pkx_kernel_stack, pkx_user_stack);
 
   pkx_panic("Shouldn't reach here. End of pkx_start.");
 }
