@@ -21,10 +21,6 @@ pkx_trap_context *pkx_trap_handler(
     : "=r"(scause) ,"=r"(stval)
     ::
   );
-  pkx_printk("scause : %x\n", scause);
-  pkx_printk("stval  : %x\n", stval);
-  pkx_printk("sepc   : %x\n", context->sepc);
-  pkx_printk("sstatus: %x\n", context->sstatus);
 
   usize tid = pkx_get_running_tid();
 

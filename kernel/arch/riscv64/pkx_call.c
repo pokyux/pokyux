@@ -71,9 +71,6 @@ void pkx_init_trap() {
 //  实现了内核栈切换到用户栈的动作
 void pkx_launch_task(pkx_task *task) {
   pkx_devide_line("Launch App");
-  pkx_printk("Launching app at : %x\n", task->addr);
-  pkx_printk("Kernel stack addr: %x\n", task->kernel_stack);
-  pkx_printk("User stack addr  : %x\n", task->user_stack);
   pkx_trap_context context;
   for (usize i = 0; i < 32; i++)
     context.x[i] = 0;
