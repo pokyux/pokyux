@@ -20,7 +20,7 @@ typedef struct {
 void pkx_init_process();
 void pkx_next_process();
 void pkx_add_process(void *addr, usize size);
-void pkx_get_process(usize pid);
+pkx_process pkx_get_process(usize pid);
 u8 *pkx_push_stack(u8 *sp, u8 *content, usize len);
 
 #endif
