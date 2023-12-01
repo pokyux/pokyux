@@ -5,7 +5,7 @@
 #include "memory.h"
 #include "stdio.h"
 
-#define PKX_MAX_task_NUM 128
+#define PKX_MAX_TASK_NUM 128
 #define PKX_USER_STACK_SIZE 4096*2
 #define PKX_KERNEL_STACK_SIZE 4096*2
 

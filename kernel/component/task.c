@@ -3,7 +3,7 @@
 #include "stdio.h"
 #include "mem.h"
 
-static pkx_task pkx_task_list[PKX_MAX_task_NUM];
+static pkx_task pkx_task_list[PKX_MAX_TASK_NUM];
 usize pkx_task_num;
 
 void pkx_init_task() {
