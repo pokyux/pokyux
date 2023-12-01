@@ -13,5 +13,5 @@ void pkx_panic(const char *info);
 void pkx_init_trap();
 
 // asm abstract
-void pkx_launch_task(pkx_task task);
+void pkx_launch_task(pkx_task *task);
 void pkx_continue_task(pkx_task task);

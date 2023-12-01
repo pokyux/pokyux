@@ -33,7 +33,7 @@ usize pkx_start() {
   pkx_printk("Load 4 apps ok.\n");
 
   pkx_task now = pkx_get_task(1);
-  pkx_launch_task(now);
+  pkx_launch_task(&now);
 
   pkx_panic("Shouldn't reach here. End of pkx_start.");
 }
