@@ -12,14 +12,14 @@
 typedef struct {
   usize pid;
   void *addr;
+  usize size;
   void *kernel_stack;
   void *user_stack;
 } pkx_process;
 
-static pkx_process *pkx_process_list[PKX_MAX_PROCESS_NUM];
-
 void pkx_init_process();
 void pkx_next_process();
+void pkx_add_process(void *addr, usize size);
 u8 *pkx_push_stack(u8 *sp, u8 *content, usize len);
 
 #endif
