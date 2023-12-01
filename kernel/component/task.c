@@ -13,9 +13,9 @@ void pkx_init_task() {
 }
 
 void pkx_next_task(usize prev_tid) {
-  extern void pkx_switch_task(task_context *ts, task_context *td);
+  extern void pkx_switch_task(pkx_task_context *ts, pkx_task_context *td);
   for (usize i = 0; i < pkx_task_num; i++) {
-    if (pkx_task_list[i].tid == except_tid)
+    if (pkx_task_list[i].tid == prev_tid)
       continue;
     if (pkx_task_list[i].status == PKX_TASK_READY)
       pkx_switch_task(

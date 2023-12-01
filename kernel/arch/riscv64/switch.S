@@ -8,7 +8,7 @@
     ld s\n, (\n+2)*8(a1)
 .endm
     .section .text
-    .globl __switch
+    .globl pkx_switch_task
 pkx_switch_task:
     # 阶段 [1]
     # __switch(
