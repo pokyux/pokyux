@@ -12,4 +12,4 @@ void pkx_panic(const char *info);
 void pkx_init_trap();
 
 // asm abstract
-void pkx_launch_process(u8 *addr, u8 *kernel_stack, u8 *user_stack);
+void pkx_launch_task(u8 *addr, u8 *kernel_stack, u8 *user_stack);

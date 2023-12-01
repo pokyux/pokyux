@@ -3,7 +3,7 @@
 #include "string.h"
 #include "type.h"
 #include "trap_context.h"
-#include "process.h"
+#include "task.h"
 
 #include "stdio.h"
 
@@ -69,7 +69,7 @@ void pkx_init_trap() {
 // 在 trap.S/restore 中将 x2 复制到 sscratch，然后
 //  在 sret 前将 sscratch 与 sp (此时为内核栈) 对调
 //  实现了内核栈切换到用户栈的动作
-void pkx_launch_process(u8 *addr, u8 *kernel_stack, u8 *user_stack) {
+void pkx_launch_task(u8 *addr, u8 *kernel_stack, u8 *user_stack) {
   pkx_devide_line("Launch App");
   pkx_printk("Launching app at : %x\n", addr);
   pkx_printk("Kernel stack addr: %x\n", kernel_stack);

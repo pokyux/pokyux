@@ -1,12 +1,12 @@
 #include "type.h"
 #include "pkx_call.h"
 #include "stdio.h"
-#include "process.h"
+#include "task.h"
 
 usize pkx_start() {
   pkx_init_trap();
   pkx_init_mem();
-  pkx_init_process();
+  pkx_init_task();
 
   // for rcore ch3, load 4 apps
   extern void app_hello_start;
@@ -26,11 +26,14 @@ usize pkx_start() {
   pkx_memcpy(0x80410000, &app_1_start, app_1_size);
   pkx_memcpy(0x80420000, &app_2_start, app_2_size);
   pkx_memcpy(0x80430000, &app_3_start, app_3_size);
-  pkx_add_process(0x80400000, app_hello_size);
-  pkx_add_process(0x80410000, app_1_size);
-  pkx_add_process(0x80420000, app_2_size);
-  pkx_add_process(0x80430000, app_3_size);
+  pkx_add_task(0x80400000, app_hello_size);
+  pkx_add_task(0x80410000, app_1_size);
+  pkx_add_task(0x80420000, app_2_size);
+  pkx_add_task(0x80430000, app_3_size);
   pkx_printk("Load 4 apps ok.\n");
+
+  pkx_task now = pkx_get_task(1);
+  pkx_launch_task(now.addr, now.kernel_stack, now.user_stack);
 
   pkx_panic("Shouldn't reach here. End of pkx_start.");
 }
