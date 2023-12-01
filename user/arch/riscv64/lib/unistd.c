@@ -29,3 +29,10 @@ isize sys_write(
     fd, (usize) buf, len
   );
 }
+
+isize sys_yield() {
+  return syscall(
+    SYSCALL_YIELD,
+    0, 0, 0
+  );
+}
