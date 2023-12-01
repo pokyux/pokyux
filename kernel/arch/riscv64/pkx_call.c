@@ -97,7 +97,7 @@ void pkx_launch_task(pkx_task *task) {
   kernel_stack = pkx_push_stack(kernel_stack, &context, sizeof(context));
 
   task->status = PKX_TASK_RUNNING;
-
+  pkx_set_running_tid(task->tid);
   extern void pkx_trap_restore(u8 *kernel_sp);
   pkx_trap_restore(kernel_stack);
   pkx_panic("Shouldn't reach here (End of launch app).");

@@ -18,7 +18,8 @@ void pkx_next_task(usize prev_tid) {
     if (pkx_task_list[i].tid == prev_tid)
       continue;
     if (pkx_task_list[i].status == PKX_TASK_READY) {
-      pkx_printk("Switch to %d\n", i);
+      pkx_printk("From tid[%d] switch to tid[%d]\n", prev_tid, i);
+      pkx_launch_task(&pkx_task_list[i]);
       pkx_switch_task(
         &pkx_task_list[prev_tid].context,
         &pkx_task_list[i].context
@@ -44,6 +45,9 @@ void pkx_add_task(void *addr, usize size) {
     = pkx_alloc(PKX_KERNEL_STACK_SIZE);
   pkx_task_list[pkx_task_num].user_stack
     = pkx_alloc(PKX_USER_STACK_SIZE);
+  pkx_task_list[pkx_task_num].context.ra = addr;
+  pkx_task_list[pkx_task_num].context.sp
+    = pkx_task_list[pkx_task_num].kernel_stack + PKX_KERNEL_STACK_SIZE;
   pkx_devide_line("Add task");
   pkx_printk("tid         : %d\n", pkx_task_num);
   pkx_printk("Addr        : %x\n", addr);
