@@ -1,5 +1,6 @@
 ARCH := riscv64
 BUILD := build
+DEFINE := 
 
 PREFIX := $(ARCH)-unknown-elf-
 QEMU := qemu-system-$(ARCH)
@@ -16,7 +17,7 @@ build: FORCE
 	-mkdir $(BUILD)
 	-mkdir $(BUILD)/$(ARCH)
 	$(PREFIX)gcc $(INCLUDES) \
-		-w \
+		-w $(DEFINE)\
 	  -mcmodel=medany \
 		kernel/arch/$(ARCH)/*.S \
 		kernel/arch/$(ARCH)/*.c \

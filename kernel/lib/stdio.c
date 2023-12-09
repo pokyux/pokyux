@@ -85,6 +85,9 @@ void pkx_fmt(const char *fmt, va_list ap) {
 }
 
 void pkx_printk(const char *fmt, ...) {
+  #ifdef PKX_NO_PRINTK
+  return;
+  #endif
   pkx_puts("[kernel] ");
   va_list ap;
   va_start(ap, fmt);
