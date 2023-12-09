@@ -13,6 +13,8 @@ void pkx_init_task() {
 }
 
 void pkx_next_task(usize prev_tid) {
+  if (prev_tid > pkx_task_num)
+    pkx_panic("Invalid prev tid in pkx_next_task.");
   for (usize i = 0; i < pkx_task_num; i++) {
     if (pkx_task_list[i].tid == prev_tid)
       continue;

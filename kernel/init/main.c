@@ -35,7 +35,7 @@ usize pkx_start() {
   for (usize i = 0; i < 4; i++)
     pkx_printk("Task %d, Status: %d\n", i, pkx_get_task(i)->status);
 
-  pkx_task *now = pkx_get_task(1);
+  pkx_task *now = pkx_get_task(0);
   pkx_continue_task(now);
 
   pkx_panic("Shouldn't reach here. End of pkx_start.");
