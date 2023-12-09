@@ -11,4 +11,7 @@ void pkx_sys_exit(usize exit_code) {
 }
 
 isize pkx_sys_yield() {
+  pkx_task *prev = pkx_get_task(pkx_get_running_tid());
+  prev->status = PKX_TASK_READY;
+  pkx_next_task(prev->tid);
 }
