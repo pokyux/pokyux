@@ -103,6 +103,9 @@ void pkx_printf(const char *fmt, ...) {
 }
 
 void pkx_devide_line(const char *header) {
+  #ifdef PKX_NO_PRINTK
+  return;
+  #endif
   if (pkx_strlen(header) > 20)
     pkx_panic("Invalid devide line header.");
   pkx_printk("");
