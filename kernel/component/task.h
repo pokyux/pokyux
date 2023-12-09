@@ -15,18 +15,14 @@
 #define PKX_TASK_EXITED  3
 
 typedef struct {
-  usize ra, sp;
-  usize s[12];
-} pkx_task_context;
-
-typedef struct {
   usize tid;
   usize status;
   void *addr;
   usize size;
   void *kernel_stack;
   void *user_stack;
-  pkx_task_context context;
+  void *trap_context;
+  usize trap_context_size;
 } pkx_task;
 
 void pkx_init_task();
