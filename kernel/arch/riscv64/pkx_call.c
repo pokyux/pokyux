@@ -103,3 +103,22 @@ void pkx_launch_task(pkx_task *task) {
 void pkx_from_asm() {
   pkx_printk("From asm.\n");
 }
+
+void pkx_init_trap_context(pkx_task *task) {
+  task->trap_context_size = sizeof(pkx_trap_context);
+  task->trap_context = pkx_alloc(sizeof(pkx_trap_context));
+  pkx_trap_context context;
+  for (usize i = 0; i < 32; i++)
+    context.x[i] = 0;
+  asm volatile (
+    "csrr %0, sstatus"
+    : "=r"(context.sstatus)::
+  );
+  // set SPP to 0 for user mode
+  context.sstatus &= (usize) 0xFFFFFEFF;
+  context.sepc = task->addr;
+  context.x[2] = task->user_stack + PKX_USER_STACK_SIZE;
+  context.kernel_sp = task->kernel_stack + PKX_KERNEL_STACK_SIZE;
+  context.user_sp = context.x[2];
+  pkx_memcpy(task->trap_context, &context, sizeof(context));
+}
