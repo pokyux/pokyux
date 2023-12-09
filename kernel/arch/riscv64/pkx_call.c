@@ -120,5 +120,13 @@ void pkx_init_trap_context(pkx_task *task) {
   context.x[2] = task->user_stack + PKX_USER_STACK_SIZE;
   context.kernel_sp = task->kernel_stack + PKX_KERNEL_STACK_SIZE;
   context.user_sp = context.x[2];
+  usize tksp = context.kernel_sp;
+  context.kernel_sp -= sizeof(context);
+  pkx_push_stack(tksp, &context, sizeof(context));
   pkx_memcpy(task->trap_context, &context, sizeof(context));
+}
+
+void pkx_continue_task(pkx_task *task) {
+  extern void pkx_trap_restore(u8 *kernel_sp);
+  pkx_trap_restore(task->trap_context[34]);
 }

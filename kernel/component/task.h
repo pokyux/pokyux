@@ -21,7 +21,7 @@ typedef struct {
   usize size;
   void *kernel_stack;
   void *user_stack;
-  void *trap_context;
+  usize *trap_context;
   usize trap_context_size;
 } pkx_task;
 
