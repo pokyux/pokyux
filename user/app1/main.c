@@ -3,7 +3,7 @@
 #include "string.h"
 
 int main() {
-  char str[] = "hello from user 1!\n";
+  char str[] = "App1: before yield\n";
   int sl = strlen(str);
   sys_write(STDOUT, str, sl);
   exit(0);
