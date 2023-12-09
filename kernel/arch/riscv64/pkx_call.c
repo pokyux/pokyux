@@ -127,6 +127,7 @@ void pkx_init_trap_context(pkx_task *task) {
 }
 
 void pkx_continue_task(pkx_task *task) {
+  pkx_set_running_tid(task->tid);
   extern void pkx_trap_restore(u8 *kernel_sp);
   pkx_trap_restore(task->trap_context[34]);
 }
