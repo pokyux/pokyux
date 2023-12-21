@@ -16,3 +16,8 @@ void pkx_init_trap();
 void pkx_init_trap_context(pkx_task *task);
 // void pkx_launch_task(pkx_task *task);
 void pkx_continue_task(pkx_task *task);
+
+// arch & machine related
+void pkx_init_mem(u8 *kernel_start, u8 *kernel_end);
+void *pkx_alloc(usize size);
+void pkx_free(void *addr);
