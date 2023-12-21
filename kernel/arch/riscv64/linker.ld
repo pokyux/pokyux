@@ -5,14 +5,14 @@ ENTRY(pkx_entry)
 
 BASE_ADDRESS = 0x80200000;
 
-SECTIONS
-{
+SECTIONS {
   . = BASE_ADDRESS;
   .text : {
     *(.text.pkx_entry)
     *(.text .stub .text.* .gnu.linkonce.t.*)
   }
 
+  PROVIDE(pkx_kernel_end = .);
   PROVIDE(etext = .); 
 
   .rodata : {

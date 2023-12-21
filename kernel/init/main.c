@@ -8,6 +8,10 @@ usize pkx_start() {
   pkx_init_mem();
   pkx_init_task();
 
+  extern void pkx_entry;
+  extern void pkx_kernel_end;
+  pkx_printk("Pokyux Kernel Addr: [%x, %x]\n", &pkx_entry, &pkx_kernel_end);
+
   // for rcore ch3, load 4 apps
   extern void app_hello_start;
   extern void app_hello_end;
