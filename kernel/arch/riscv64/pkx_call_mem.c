@@ -34,5 +34,12 @@ void pkx_init_mem(u8 *kernel_start, u8 *kernel_end) {
 
 usize pkx_alloc_ppn();
 void pkx_free_ppn();
-usize pkx_addr_to_ppn(void *_addr);
-void *pkx_ppn_to_addr(usize ppn);
+
+usize pkx_addr_to_ppn(void *_addr) {
+  usize addr = (usize) _addr;
+  return addr >> 12;
+}
+
+void *pkx_ppn_to_addr(usize ppn) {
+  return (void *) (ppn << 12);
+}
