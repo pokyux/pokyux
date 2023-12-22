@@ -1,5 +1,6 @@
 #include "type.h"
 
+// no more than usize[64]
 typedef struct {
   usize x[32];
   usize sstatus;

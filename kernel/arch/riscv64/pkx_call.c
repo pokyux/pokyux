@@ -106,7 +106,6 @@ void pkx_from_asm() {
 
 void pkx_init_trap_context(pkx_task *task) {
   task->trap_context_size = sizeof(pkx_trap_context);
-  task->trap_context = pkx_alloc(sizeof(pkx_trap_context));
   pkx_trap_context context;
   for (usize i = 0; i < 32; i++)
     context.x[i] = 0;

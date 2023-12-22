@@ -1,7 +1,6 @@
 #include "task.h"
 #include "pkx_call.h"
 #include "stdio.h"
-#include "mem.h"
 
 static pkx_task pkx_task_list[PKX_MAX_TASK_NUM];
 usize pkx_task_num, pkx_task_running;
@@ -39,9 +38,9 @@ void pkx_add_task(void *addr, usize size) {
   pkx_task_list[pkx_task_num].addr = addr;
   pkx_task_list[pkx_task_num].size = size;
   pkx_task_list[pkx_task_num].kernel_stack
-    = pkx_alloc(PKX_KERNEL_STACK_SIZE);
+    = pkx_ppn_to_addr(pkx_alloc_ppn());
   pkx_task_list[pkx_task_num].user_stack
-    = pkx_alloc(PKX_USER_STACK_SIZE);
+    = pkx_ppn_to_addr(pkx_alloc_ppn());
   pkx_init_trap_context(&pkx_task_list[pkx_task_num]);
   pkx_devide_line("Add task");
   pkx_printk("tid         : %d\n", pkx_task_num);
