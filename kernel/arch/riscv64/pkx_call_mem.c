@@ -17,7 +17,7 @@ void pkx_init_mem(u8 *kernel_start, u8 *kernel_end) {
   pkx_ppn_manager.start  = start;
   pkx_ppn_manager.usable = end - start;
   // 目前 Pokyux 使用位图管理内存页，所以要求页面总数是 8 的倍数
-  pkx_ppn_manager.usable -= pkx_ppn_manager % 8;
+  pkx_ppn_manager.usable -= pkx_ppn_manager.usable % 8;
   usize bitmap_lenth = pkx_ppn_manager.usable / 8;
   pkx_ppn_manager.allocation_table_lenth = bitmap_lenth;
 
