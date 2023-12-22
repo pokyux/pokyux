@@ -13,5 +13,5 @@ struct _pkx_ppn_manager {
 void pkx_init_mem(u8 *kernel_start, u8 *kernel_end);
 usize pkx_alloc_ppn();
 void pkx_free_ppn();
-usize pkx_get_addr_ppn(void *_addr);
-void *pkx_get_pp_addr(usize ppn);
+usize pkx_addr_to_ppn(void *_addr);
+void *pkx_ppn_to_addr(usize ppn);
