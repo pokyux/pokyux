@@ -12,6 +12,23 @@ usize pkx_start() {
   pkx_init_mem(&pkx_entry, &pkx_kernel_end);
   pkx_init_task();
 
+  usize ppn;
+  for (usize i = 0; i < 10; i++) {
+    ppn = pkx_alloc_ppn();
+    pkx_printf("Alloc PPN: %x\n", ppn);
+  }
+
+  for (usize i = 0; i < 10; i++) {
+    pkx_printf("Free PPN: %x\n", ppn);
+    pkx_free_ppn(ppn);
+    ppn--;
+  }
+
+  for (usize i = 0; i < 10; i++) {
+    ppn = pkx_alloc_ppn();
+    pkx_printf("Alloc PPN: %x\n", ppn);
+  }
+
   // for rcore ch3, load 4 apps
   extern void app_hello_start;
   extern void app_hello_end;
