@@ -13,12 +13,12 @@ void pkx_shutdown();
 void pkx_panic(const char *info);
 
 // arch & machine related
-void pkx_init_mem(u8 *kernel_start, u8 *kernel_end);
+void  pkx_init_mem(u8 *kernel_start, u8 *kernel_end);
 usize pkx_alloc_ppn();
-void pkx_free_ppn(usize ppn);
+void  pkx_free_ppn(usize ppn);
 usize pkx_addr_to_ppn(void *_addr);
 void *pkx_ppn_to_addr(usize ppn);
-void pkx_init_trap();
-void pkx_init_trap_context(pkx_task *task);
+void  pkx_init_trap();
+void  pkx_init_trap_context(pkx_task *task);
 // void pkx_launch_task(pkx_task *task);
 void pkx_continue_task(pkx_task *task);
