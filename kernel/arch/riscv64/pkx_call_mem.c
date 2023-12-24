@@ -78,3 +78,22 @@ usize pkx_addr_to_ppn(void *_addr) {
 void *pkx_ppn_to_addr(usize ppn) {
   return (void *) (ppn << 12);
 }
+
+// PageTable & VirtPage
+
+typedef usize pkx_pte;
+
+enum pkx_pte_flag {
+  v = 1 << 0,
+  r = 1 << 1,
+  w = 1 << 2,
+  x = 1 << 3,
+  u = 1 << 4,
+  g = 1 << 5,
+  a = 1 << 6,
+  d = 1 << 7
+};
+
+pkx_pte pkx_make_pte(usize ppn, u8 flags) {
+  return (pkx_pte) (ppn << 8 | ((pkx_pte) flags));
+}
