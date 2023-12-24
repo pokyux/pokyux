@@ -42,12 +42,6 @@ void pkx_add_task(void *addr, usize size) {
   pkx_task_list[pkx_task_num].user_stack
     = pkx_ppn_to_addr(pkx_alloc_ppn());
   pkx_init_trap_context(&pkx_task_list[pkx_task_num]);
-  pkx_devide_line("Add task");
-  pkx_printk("tid         : %d\n", pkx_task_num);
-  pkx_printk("Addr        : %x\n", addr);
-  pkx_printk("Size        : %x\n", size);
-  pkx_printk("Kernel Stack: %x\n", pkx_task_list[pkx_task_num].kernel_stack);
-  pkx_printk("User   Stack: %x\n", pkx_task_list[pkx_task_num].user_stack);
   pkx_task_list[pkx_task_num].status = PKX_TASK_READY;
   pkx_task_num++;
 }
