@@ -8,8 +8,8 @@ Pokyux is the kernel of an OS named Pokyux OS.
 $ tree
 ├── build                    # 系统内核构建输出（按照架构存放）
 │   ├── riscv64
-│   │   ├── pokyux.bin       # 内核 ELF 文件
-│   │   └── pokyux.elf       # 内核二进制文件（用于 QEMU 引导）
+│   │   ├── pokyux.bin       # 内核二进制文件（用于 QEMU 引导）
+│   │   └── pokyux.elf       # 内核 ELF 文件
 │   └── user                 # 用户程序构建输出（按照架构存放）
 │       └── riscv64
 ├── kernel                   # 内核源码
