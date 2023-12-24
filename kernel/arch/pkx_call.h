@@ -21,4 +21,4 @@ void *pkx_ppn_to_addr(usize ppn);
 void  pkx_init_trap();
 void  pkx_init_trap_context(pkx_task *task);
 // void pkx_launch_task(pkx_task *task);
-void pkx_continue_task(pkx_task *task);
+void  pkx_continue_task(pkx_task *task);
