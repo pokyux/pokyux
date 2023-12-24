@@ -8,6 +8,7 @@ void pkx_puts(char *str);
 // asm abstract
 void pkx_idle();
 void pkx_fresh_icache();
+void pkx_fresh_tlb();
 void pkx_shutdown();
 void pkx_panic(const char *info);
 
