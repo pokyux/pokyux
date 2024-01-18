@@ -8,6 +8,7 @@ usize pkx_task_num, pkx_task_running;
 void pkx_init_task() {
   pkx_task_num = 0;
   pkx_task_running = -1;
+  pkx_printk("pkx_task_running: %x\n", &pkx_task_running);
   pkx_printk("task controler init ok.\n");
 }
 

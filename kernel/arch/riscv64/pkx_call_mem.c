@@ -97,3 +97,7 @@ enum pkx_pte_flag {
 pkx_pte pkx_make_pte(usize ppn, u8 flags) {
   return (pkx_pte) (ppn << 8 | ((pkx_pte) flags));
 }
+
+void pkx_fresh_tlb() {
+  asm volatile ("sfence.vma");
+}

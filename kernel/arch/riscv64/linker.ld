@@ -12,7 +12,6 @@ SECTIONS {
     *(.text .stub .text.* .gnu.linkonce.t.*)
   }
 
-  PROVIDE(pkx_kernel_end = .);
   PROVIDE(etext = .); 
 
   .rodata : {
@@ -39,7 +38,7 @@ SECTIONS {
   }
   ebss = .;
 
-  PROVIDE(end = .);
+  PROVIDE(pkx_kernel_end = .);
   /DISCARD/ : {
     *(.eh_frame .note.GNU-stack)
   }
