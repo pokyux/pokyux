@@ -1,7 +1,7 @@
 #include "trap_context.h"
 #include "stdio.h"
 #include "type.h"
-#include "pkx_call.h"
+#include "pkx_arch.h"
 #include "task.h"
 #include "memory.h"
 

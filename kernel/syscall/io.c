@@ -1,5 +1,5 @@
 #include "stdio.h"
-#include "pkx_call.h"
+#include "pkx_arch.h"
 
 #include "./io.h"
 

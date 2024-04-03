@@ -1,4 +1,4 @@
-#include "pkx_call.h"
+#include "pkx_arch.h"
 #define PKX_PHYS_MEM_START 0x80200000
 #define PKX_PHYS_MEM_END   0x80800000 // not included
 

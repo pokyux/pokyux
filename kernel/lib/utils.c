@@ -1,5 +1,5 @@
 #include "utils.h"
-#include "pkx_call.h"
+#include "pkx_arch.h"
 
 char pkx_hex_map[] = {
   '0', '1', '2', '3',

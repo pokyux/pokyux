@@ -1,5 +1,5 @@
 #include "task.h"
-#include "pkx_call.h"
+#include "pkx_arch.h"
 #include "stdio.h"
 
 static pkx_task pkx_task_list[PKX_MAX_TASK_NUM];
